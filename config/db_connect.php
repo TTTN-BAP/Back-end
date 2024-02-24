@@ -9,7 +9,7 @@ class db{
         $this->conn = null;
         try {
             $this->conn = new mysqli($this->servername,$this->username, $this->password,$this->database);
-            echo "Connected successfully \n";
+            //echo "Connected successfully \n";
             } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
             }

@@ -21,33 +21,81 @@ class Data{
     }
     //read data from database
     public function read(){
-        $query = "SELECT * FROM data ORDER BY id ASC";
+        $query = "SELECT * FROM data";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt;
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
     }
+    public function get_job_by_id($id){
+        $query = "SELECT * FROM data WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
 
-    public function search_jobname(){
-        $query = "SELECT * FROM data WHERE job_name LIKE ?";
+        return $row;
+    }
+    public function search_job($job){
+        $query = "SELECT * FROM data WHERE job_name LIKE ? OR company_name LIKE ?";
         $stmt = $this->conn->prepare($query);
         // Gán giá trị cho tham số
-        $stmt->bindParam (1, $this->job_name);
+        $param_job_name = "%$job%";
+        $stmt->bind_param ("ss", $param_job_name, $param_job_name);
         $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $this->id = $row['id'];
-        $this->job_name = $row['job_name'];
-        $this->id_company = $row['id_company'];
-        $this->company_name = $row['company_name'];
-        $this->job_salary = $row['job_salary'];
-        $this->job_experience = $row['job_experience'];
-        $this->job_level = $row['job_level'];
-        $this->job_expired_date = $row['job_expired_date'];
-        $this->job_details = $row['job_details'];
-        $this->job_required = $row['job_required'];
-        $this->company_logo = $row['company_logo'];
-        $this->job_address = $row['job_address'];
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    public function get_job_by_address($address){
+        $query = "SELECT * FROM data WHERE job_address LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_job_address = "%$address%";
+        $stmt->bind_param ("s", $param_job_address);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    public function get_job_by_level($level){
+        $query = "SELECT * FROM data WHERE job_level LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_job_level = "%$level%";
+        $stmt->bind_param ("s", $param_job_level);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    public function get_job_by_experience($job_experience){
+        $query = "SELECT * FROM data WHERE job_experience LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_job_experience = "%$job_experience%";
+        $stmt->bind_param ("s", $param_job_experience);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
     }
 }
 ?>
