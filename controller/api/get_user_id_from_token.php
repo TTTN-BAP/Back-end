@@ -15,12 +15,11 @@
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method=='POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        if (($username) && ($password)){
-            $response = $data_acc->login($username,$password);
+        $token = $_POST['token'];
+        if ($token){
+            $response = $data_acc->getUserIDFromToken($token);
             // if ($acc) echo json_encode(['username' => $acc['username']]);
-            echo $response;
+            echo json_encode(array("id" => $response));
         }
         else {
             echo json_encode(array("message" => "Dữ liệu không hợp lệ"));

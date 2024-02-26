@@ -7,11 +7,18 @@
 
     $db = new db();
     $connect = $db->connect();
-
     $data_job = new Data($connect);
-    $read = $data_job->get_all_job();
+
     $method = $_SERVER['REQUEST_METHOD'];
+    $job_salary = $_GET['job_salary'];
+
     if ($method=='GET') {
-        echo json_encode($read,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $data = $data_job->get_job_by_salary($job_salary);
+        if($data){
+            echo json_encode($data,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+        else {
+            echo json_encode(array("message" => "Could not find job"));
+        }
     }
 ?>

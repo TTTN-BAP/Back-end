@@ -20,7 +20,7 @@ class Data{
         $this->conn = $db;
     }
     //read data from database
-    public function read(){
+    public function get_all_job(){
         $query = "SELECT * FROM data";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -40,6 +40,18 @@ class Data{
         $row = $result->fetch_assoc();
 
         return $row;
+    }
+    public function get_job_by_id_company($id_company){
+        $query = "SELECT * FROM data WHERE id_company = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $id_company);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
     }
     public function search_job($job){
         $query = "SELECT * FROM data WHERE job_name LIKE ? OR company_name LIKE ?";
@@ -96,6 +108,61 @@ class Data{
             $data[] = $row;
         }
         return $data;
+    }
+    public function get_job_by_salary($job_salary){
+        $query = "SELECT * FROM data WHERE CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(job_salary, ' ', 1), ' ', -1) AS UNSIGNED) >= ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_job_salary = "$job_salary";
+        $stmt->bind_param ("s", $param_job_salary);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    public function create_job($job_name, $id_company, $company_name, $job_salary, $job_experience, $job_level, $job_expired_date, $job_details, $job_required, $company_logo, $job_address){
+        $query = "INSERT INTO data SET job_name = ?, id_company = ?, company_name = ?, job_salary = ?, job_experience = ?, job_level = ?, job_expired_date = ?, job_details = ?, job_required = ?, company_logo = ?, job_address = ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $stmt->bind_param ("sssssssssss", $job_name, $id_company, $company_name, $job_salary, $job_experience, $job_level, $job_expired_date, $job_details, $job_required, $company_logo, $job_address) ;
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            echo "Error: " . $stmt->error;
+            return false;
+        }
+    }
+    public function update_job_by_id($job_id, $job_name, $id_company, $company_name, $job_salary, $job_experience, $job_level, $job_expired_date, $job_details, $job_required, $company_logo, $job_address){
+        $query = "UPDATE data SET job_name = ?, id_company = ?, company_name = ?, job_salary = ?, job_experience = ?, job_level = ?, job_expired_date = ?, job_details = ?, job_required = ?, company_logo = ?, job_address = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $stmt->bind_param ("sssssssssssi", $job_name, $id_company, $company_name, $job_salary, $job_experience, $job_level, $job_expired_date, $job_details, $job_required, $company_logo, $job_address, $job_id) ;
+        $stmt->execute();
+        #$result = $stmt->get_result();
+        if ($stmt->affected_rows > 0) {
+            // Cập nhật thành công
+            json_encode(['message' => 'Data updated']);
+        } else {
+            // Không có dòng nào được cập nhật
+            echo json_encode(['message' => 'Invalid data']);
+        }
+    }
+    public function delete_job_by_id($job_id){
+        $query = "DELETE FROM data WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $stmt->bind_param ("i", $job_id) ;
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            echo "Error: " . $stmt->error;
+            return false;
+        }
     }
 }
 ?>
