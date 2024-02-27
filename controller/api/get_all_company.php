@@ -14,4 +14,7 @@
     if ($method=='GET') {
         echo json_encode($read,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+    else {
+        echo json_encode(['message' => 'Invalid method']);
+    }
 ?>
