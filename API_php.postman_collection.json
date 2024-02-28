@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "22996d75-918e-4025-936e-ea7787f0f550",
+		"name": "API_php",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24399423",
+		"_collection_link": "https://martian-astronaut-999133.postman.co/workspace/Job_Recommender~3a863093-df76-4600-86ed-e919221f314b/collection/24399423-22996d75-918e-4025-936e-ea7787f0f550?action=share&source=collection_link&creator=24399423"
+	},
+	"item": [
+		{
+			"name": "Authen",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/auth.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"auth.php"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_user_id_from_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/auth.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"auth.php"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register.php",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "huynh2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "user2",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/register.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"register.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "get_all_company.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_all_job.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_all_job.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_company_by_id.php",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_id.php?id=4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_id.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search_company.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/search_company.php?company_name=NGÂN HÀNG",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"search_company.php"
+							],
+							"query": [
+								{
+									"key": "company_name",
+									"value": "NGÂN HÀNG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_company.php",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_name",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "id_company",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_salary",
+									"value": "10 Tr",
+									"type": "text"
+								},
+								{
+									"key": "job_experience",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_level",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_expired_date",
+									"value": "2024-02-29T00:00:00",
+									"type": "text"
+								},
+								{
+									"key": "job_details",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_required",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "company_logo",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_address",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/create_job.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"create_job.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_company_by_id.php",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_id\": \"5276\",\r\n    \"job_name\": \"Giám Sát (Tuyển gấp)\",\r\n    \"id_company\": \"35A6FD8E\",\r\n    \"company_name\": \"Công Ty Tài Chính Mirae Asset (Việt Nam)\",\r\n    \"job_salary\": \"Cạnh tranh\",\r\n    \"job_experience\": \"2 - 5 Năm\",\r\n    \"job_level\": \"Trưởng nhóm / Giám sát\",\r\n    \"job_expired_date\": \"2026-02-20T00:00:00\",\r\n    \"job_details\": \"Mô tả Công việc\",\r\n    \"job_required\": \"Yêu Cầu Công Việc\",\r\n    \"company_logo\": \"https://images.careerviet.vn/employer_folders/lot4/136334/148x148/90806logo.png\",\r\n    \"job_address\": \"Bắc Ninh\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/update_job_by_id.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"update_job_by_id.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_company_by_id.php",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_id\": \"5277\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/delete_job_by_id.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"delete_job_by_id.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cv",
+			"item": [
+				{
+					"name": "update_cv_by_id.php",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_id\": \"5276\",\r\n    \"job_name\": \"Giám Sát (Tuyển gấp)\",\r\n    \"id_company\": \"35A6FD8E\",\r\n    \"company_name\": \"Công Ty Tài Chính Mirae Asset (Việt Nam)\",\r\n    \"job_salary\": \"Cạnh tranh\",\r\n    \"job_experience\": \"2 - 5 Năm\",\r\n    \"job_level\": \"Trưởng nhóm / Giám sát\",\r\n    \"job_expired_date\": \"2026-02-20T00:00:00\",\r\n    \"job_details\": \"Mô tả Công việc\",\r\n    \"job_required\": \"Yêu Cầu Công Việc\",\r\n    \"company_logo\": \"https://images.careerviet.vn/employer_folders/lot4/136334/148x148/90806logo.png\",\r\n    \"job_address\": \"Bắc Ninh\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/update_job_by_id.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"update_job_by_id.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_cv_by_id.php",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_id.php?id=4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_id.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_cv.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_all_job.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_all_job.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job",
+			"item": [
+				{
+					"name": "get_job_by_id.php",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_id.php?id=4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_id.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_job_by_id_company.php",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_id_job.php?id=4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_id_job.php"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search_job.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/search_job.php?job_info=chuyên viên",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"search_job.php"
+							],
+							"query": [
+								{
+									"key": "job_info",
+									"value": "chuyên viên"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_job_by_address.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_address.php?job_address=Đà Nẵng",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_address.php"
+							],
+							"query": [
+								{
+									"key": "job_address",
+									"value": "Đà Nẵng"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_job_by_level.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_level.php?job_level=Quản lý",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_level.php"
+							],
+							"query": [
+								{
+									"key": "job_level",
+									"value": "Quản lý"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_job.php",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_name",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "id_company",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_salary",
+									"value": "10 Tr",
+									"type": "text"
+								},
+								{
+									"key": "job_experience",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_level",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_expired_date",
+									"value": "2024-02-29T00:00:00",
+									"type": "text"
+								},
+								{
+									"key": "job_details",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_required",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "company_logo",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "job_address",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/create_job.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"create_job.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_job_by_id.php",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_id\": \"5277\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/delete_job_by_id.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"delete_job_by_id.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_job_by_id.php",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_id\": \"5276\",\r\n    \"job_name\": \"Giám Sát (Tuyển gấp)\",\r\n    \"id_company\": \"35A6FD8E\",\r\n    \"company_name\": \"Công Ty Tài Chính Mirae Asset (Việt Nam)\",\r\n    \"job_salary\": \"Cạnh tranh\",\r\n    \"job_experience\": \"2 - 5 Năm\",\r\n    \"job_level\": \"Trưởng nhóm / Giám sát\",\r\n    \"job_expired_date\": \"2026-02-20T00:00:00\",\r\n    \"job_details\": \"Mô tả Công việc\",\r\n    \"job_required\": \"Yêu Cầu Công Việc\",\r\n    \"company_logo\": \"https://images.careerviet.vn/employer_folders/lot4/136334/148x148/90806logo.png\",\r\n    \"job_address\": \"Bắc Ninh\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/update_job_by_id.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"update_job_by_id.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_job_by_salary.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_salary.php?job_salary=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_salary.php"
+							],
+							"query": [
+								{
+									"key": "job_salary",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_job.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_all_job.php",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_all_job.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_job_by_experience.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/API%20PHP/controller/api/get_job_by_experience.php?job_experience=3 năm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"API%20PHP",
+								"controller",
+								"api",
+								"get_job_by_experience.php"
+							],
+							"query": [
+								{
+									"key": "job_experience",
+									"value": "3 năm"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
