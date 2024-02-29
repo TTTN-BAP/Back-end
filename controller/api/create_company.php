@@ -12,14 +12,15 @@
     $data_company = new Company($connect);
 
     $method = $_SERVER['REQUEST_METHOD'];
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    $company_name = $_POST['company_name'];
-    $company_address = $_POST['company_address'];
-    $company_size = $_POST['company_size'];
-    $company_website = $_POST['company_website'];
-    $company_type = $_POST['company_type'];
-    $company_details = $_POST['company_details'];
-    $company_logo = $_POST['company_logo'];
+    $company_name = $data['company_name'];
+    $company_address = $data['company_address'];
+    $company_size = $data['company_size'];
+    $company_website = $data['company_website'];
+    $company_type = $data['company_type'];
+    $company_details = $data['company_details'];
+    $company_logo = $data['company_logo'];
 
     if ($method=='POST') {
         // Cập nhật người dùng

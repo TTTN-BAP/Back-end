@@ -13,9 +13,11 @@
     
     // Lấy dữ liệu từ yêu cầu POST
     $method = $_SERVER['REQUEST_METHOD'];
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $token = $data['token'];
 
     if ($method=='POST') {
-        $token = $_POST['token'];
         if ($token){
             $response = $data_acc->getUserIDFromToken($token);
             // if ($acc) echo json_encode(['username' => $acc['username']]);
@@ -24,6 +26,9 @@
         else {
             echo json_encode(array("message" => "Dữ liệu không hợp lệ"));
         }
+    }
+    else {
+        echo json_encode(array("message" => "Wrong method!"));
     }
     
 

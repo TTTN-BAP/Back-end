@@ -13,17 +13,23 @@
     
     // Lấy dữ liệu từ yêu cầu POST
     $method = $_SERVER['REQUEST_METHOD'];
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $email = $data['email'];
+    $username = $data['username'];
+    $password = $data['password'];
 
     if ($method=='POST') {
-        $email = $_POST['email'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        
         if ((($username) && ($password)) && ($email)){
             $data_acc->register($email, $username,$password);
         }
         else {
             echo json_encode(array("message" => "Dữ liệu không hợp lệ"));
         }
+    }
+    else {
+        echo json_encode(array("message" => "Wrong method!"));
     }
     
 

@@ -16,19 +16,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "user",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123456",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/API%20PHP/controller/api/auth.php",
@@ -51,14 +40,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE3MDg5NzgyNjcsImV4cCI6MTcwODk4MTg2N30.4AC_PuVSXC-BeNNmj2_7Yzy5dB1IRI5Ufo5bhjULsRI\n",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MDkyMDE4MjcsImV4cCI6MTcwOTIwNTQyN30.k1SoVB771a6Q2ogb9VWyH1SW3-Bt0eoreSe3YDCUz8k\"\r\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/API%20PHP/controller/api/get_user_id_from_token.php",
@@ -81,24 +64,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "huynh22@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "user33",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123456",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"shiba123@gmail.com\",\r\n    \"username\": \"viet\",\r\n    \"password\": \"123456\"\r\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/API%20PHP/controller/api/register.php",
@@ -211,44 +178,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "company_name",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "company_address",
-									"value": "MB Tower, 18 Lê Văn Lương, Trung Hòa, Cầu Giấy, Hà Nộ",
-									"type": "text"
-								},
-								{
-									"key": "company_size",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "company_website",
-									"value": "Website: https://www.mbbank.com.vn/",
-									"type": "text"
-								},
-								{
-									"key": "company_type",
-									"value": "Cổ phần",
-									"type": "text"
-								},
-								{
-									"key": "company_details",
-									"value": "MB là một định chế vững về tài chính, mạnh về quản lý, minh bạch về thông tin, thuận tiện và tiên phong trong cung cấp dịch vụ để thực hiện được sứ mệnh của mình, là một tổ chức, một đối tác Vững vàng, tin cậy.\n\nTrong suốt quá trình hình thành và phát triển, dưới sự lãnh đạo, chỉ đạo của Quân ủy Trung ương - Bộ Quốc phòng, Ngân hàng nhà nước và sự hỗ trợ, giúp đỡ tận tình của các cơ quan hữu quan; đơn vị trong và ngoài quân đội; Ngân hàng TMCP Quân Đội (MB) đã phát huy bản chất tốt đẹp và truyền thống vẻ vang của người chiến sỹ trên mặt trận kinh tế; đoàn kết, chủ động, sáng tạo, tự lực, tự cường, khắc phục khó khăn, cải tiến chất lượng hoạt động đưa các sản phẩm dịch vụ Ngân hàng tốt nhất đến với các cá nhân, tổ chức kinh tế, các doanh nghiệp trên khắp các tỉnh, thành trọng điểm của cả nước, góp phần đẩy mạnh công cuộc phát triển kinh tế của Việt Nam nói chung và nâng cao hiệu quả kinh doanh của ngành Ngân hàng nói riêng.",
-									"type": "text"
-								},
-								{
-									"key": "company_logo",
-									"value": "https://images.careerviet.vn/employer_folders/lot0/99440/148x148/134506mb-logo-main-01.png",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"company_name\": \"Ok\",\r\n    \"company_address\": \"Shanghai\",\r\n    \"company_size\": \"Qui mô công ty: 100-499\",\r\n    \"company_website\": \"Website: https://vi.stri.com/\",\r\n    \"company_type\": \"Loại hình hoạt động: Trách nhiệm hữu hạn\",\r\n    \"company_details\": \"Stri is a modern, mobile-optimized website builder that’s extremely easy to use. Our mission is to give everyone the power to unleash their individuality.\\nOur headquarters is currently based in Shanghai, China but we have deep Silicon Valley roots. We’re backed by Y Combinator (W13), SV Angel, Funders Club, Innovation Works, Infinity Ventures, Index Ventures, Kevin Hale, and many others.\",\r\n    \"company_logo\": \"https://static.careerviet.vn/themes/kiemviecv32/images/graphics/logo-default.png\"\r\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/API%20PHP/controller/api/create_company.php",
@@ -578,70 +509,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "job_id",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "job_name",
-									"value": "test3",
-									"type": "text"
-								},
-								{
-									"key": "id_company",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "company_name",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "job_salary",
-									"value": "10 Tr",
-									"type": "text"
-								},
-								{
-									"key": "job_experience",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "job_level",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "job_expired_date",
-									"value": "2024-02-29T00:00:00",
-									"type": "text"
-								},
-								{
-									"key": "job_details",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "job_required",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "company_logo",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "job_address",
-									"value": "test",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\r\n    \"job_name\": \"IT DEV\",\r\n    \"id_company\": \"35A6FD8E\",\r\n    \"company_name\": \"Công Ty Tài Chính Mirae Asset (Việt Nam)\",\r\n    \"job_salary\": \"Cạnh tranh\",\r\n    \"job_experience\": \"2 - 5 Năm\",\r\n    \"job_level\": \"Trưởng nhóm / Giám sát\",\r\n    \"job_expired_date\": \"2026-02-20T00:00:00\",\r\n    \"job_details\": \"Mô tả Công việc\",\r\n    \"job_required\": \"Yêu Cầu Công Việc\",\r\n    \"company_logo\": \"https://images.careerviet.vn/employer_folders/lot4/136334/148x148/90806logo.png\",\r\n    \"job_address\": \"Bắc Ninh\"\r\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/API%20PHP/controller/api/create_job.php",

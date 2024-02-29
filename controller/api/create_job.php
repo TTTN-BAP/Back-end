@@ -12,18 +12,19 @@
     $data_job = new Data($connect);
 
     $method = $_SERVER['REQUEST_METHOD'];
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    $job_name = $_POST['job_name'];
-    $id_company = $_POST['id_company'];
-    $company_name = $_POST['company_name'];
-    $job_salary = $_POST['job_salary'];
-    $job_experience = $_POST['job_experience'];
-    $job_level = $_POST['job_level'];
-    $job_expired_date = $_POST['job_expired_date'];
-    $job_details = $_POST['job_details'];
-    $job_required = $_POST['job_required'];
-    $company_logo = $_POST['company_logo'];
-    $job_address = $_POST['job_address'];
+    $job_name = $data['job_name'];
+    $id_company = $data['id_company'];
+    $company_name = $data['company_name'];
+    $job_salary = $data['job_salary'];
+    $job_experience = $data['job_experience'];
+    $job_level = $data['job_level'];
+    $job_expired_date = $data['job_expired_date'];
+    $job_details = $data['job_details'];
+    $job_required = $data['job_required'];
+    $company_logo = $data['company_logo'];
+    $job_address = $data['job_address'];
 
     if ($method=='POST') {
         // Cập nhật người dùng

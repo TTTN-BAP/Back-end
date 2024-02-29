@@ -13,10 +13,12 @@
     
     // Lấy dữ liệu từ yêu cầu POST
     $method = $_SERVER['REQUEST_METHOD'];
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $username = addslashes(strip_tags($data['username']));
+    $password = addslashes(strip_tags($data['password']));
 
     if ($method=='POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
         if (($username) && ($password)){
             $response = $data_acc->login($username,$password);
             // if ($acc) echo json_encode(['username' => $acc['username']]);
@@ -26,6 +28,8 @@
             echo json_encode(array("message" => "Dữ liệu không hợp lệ"));
         }
     }
-    
+    else {
+        echo json_encode(array("message" => "Wrong method!"));
+    }
 
 ?>
