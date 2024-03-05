@@ -7,9 +7,10 @@ class Company{
         $this->conn = $db;
     }
     //read data from database
-    public function get_all_company(){
-        $query = "SELECT * FROM company";
+    public function get_all_company($limit, $offset){
+        $query = "SELECT * FROM company LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ii", $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = [];
@@ -17,6 +18,12 @@ class Company{
             $data[] = $row;
         }
         return $data;
+    }
+    public function get_total_data(){
+        $query = "SELECT COUNT(*) as total FROM company";
+        $result = $this->conn->query($query);
+        $row = $result->fetch_assoc();
+        return $row['total'];
     }
     public function get_company_by_id($id_company){
         $query = "SELECT * FROM company WHERE id_company = ?";
@@ -28,12 +35,12 @@ class Company{
 
         return $row;
     }
-    public function search_company($company_name){
-        $query = "SELECT * FROM company WHERE company_name LIKE ?";
+    public function search_company($company_name, $limit, $offset){
+        $query = "SELECT * FROM company WHERE company_name LIKE ? LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($query);
         // Gán giá trị cho tham số
         $param_company_name = "%$company_name%";
-        $stmt->bind_param ("s", $param_company_name);
+        $stmt->bind_param ("sii", $param_company_name, $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = [];
@@ -41,6 +48,17 @@ class Company{
             $data[] = $row;
         }
         return $data;
+    }
+    public function get_total_search_company($company_name){
+        $query = "SELECT COUNT(*) as total FROM company WHERE company_name LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_company_name = "%$company_name%";
+        $stmt->bind_param("s", $param_company_name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['total'];
     }
 
     public function create_company($company_name, $company_address, $company_size, $company_website, $company_type, $company_details, $company_logo){

@@ -19,8 +19,16 @@
     $offset = ($page - 1) * $limit;
 
     if ($method=='GET') {
-        $read = $data_cv->get_all_cv($page, $offset);
-        echo json_encode($read,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $read = $data_cv->get_all_cv($limit, $offset);
+        // Lấy tổng số dữ liệu
+        $totalData = $data_cv->get_total_data(); 
+        // Tính toán số lượng trang
+        $totalPages = ceil($totalData / $limit);
+        $response = array(
+            'totalPages' => $totalPages,
+            'data' => $read
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
     else {
         echo json_encode(['message' => 'Invalid method']);

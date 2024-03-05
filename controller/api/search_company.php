@@ -12,11 +12,23 @@
 
     $method = $_SERVER['REQUEST_METHOD'];
     $company_info = $_GET['company_name'];
+    $page = $_GET['page'];
+    $limit   = $_GET['limit'];
+    // Tính toán offset để xác định bắt đầu lấy dữ liệu từ bảng
+    $offset = ($page - 1) * $limit;
 
     if ($method=='GET') {
-        $data = $data_company->search_company($company_info);
+        $data = $data_company->search_company($company_info, $limit, $offset);
         if($data){
-            echo json_encode($data,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            // Lấy tổng số dữ liệu
+            $totalData = $data_company->get_total_search_company($company_info); 
+            // Tính toán số lượng trang
+            $totalPages = ceil($totalData / $limit);
+            $response = array(
+                'totalPages' => $totalPages,
+                'data' => $data
+            );
+            echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
         else {
             echo json_encode(array("message" => "Could not find company"));

@@ -13,34 +13,25 @@
     $method = $_SERVER['REQUEST_METHOD'];
     $job_info = $_GET['job_info'];
 
+    $page = $_GET['page'];
+    $limit   = $_GET['limit'];
+    // Tính toán offset để xác định bắt đầu lấy dữ liệu từ bảng
+    $offset = ($page - 1) * $limit;
     if ($method=='GET') {
-        $data = $data_job->search_job($job_info);
+        $data = $data_job->search_job($job_info, $limit, $offset);
         if($data){
-            echo json_encode($data,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            // Lấy tổng số dữ liệu
+            $totalData = $data_job->get_total_search_job($job_info); 
+            // Tính toán số lượng trang
+            $totalPages = ceil($totalData / $limit);
+            $response = array(
+                'totalPages' => $totalPages,
+                'data' => $data
+            );
+            echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
         else {
             echo json_encode(array("message" => "Could not find job"));
         }
     }
-    // while ($row = $read->fetch(PDO::FETCH_ASSOC)) {
-    //     extract($row);
-    //     //var_dump($row);
-    //     $job_item = array(
-    //             'id_job' => $id,
-    //             'job_name' => $job_name,
-    //             'id_company' => $id_company,
-    //             'company_name' => $company_name,
-    //             'job_salary' => $job_salary,
-    //             'job_experience' => $job_experience,
-    //             'job_level' => $job_level,
-    //             'job_expired_date' => $job_expired_date,
-    //             'job_details' => $job_details,
-    //             'job_required' => $job_required,
-    //             'company_logo' => $company_logo,
-    //             'job_address' => $job_address
-    //     );
-    //         array_push($job_array['job'], $job_item);
-    //     }
-    //     echo json_encode($job_array,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
 ?>

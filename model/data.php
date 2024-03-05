@@ -20,9 +20,10 @@ class Data{
         $this->conn = $db;
     }
     //read data from database
-    public function get_all_job(){
-        $query = "SELECT * FROM data";
+    public function get_all_job($limit, $offset){
+        $query = "SELECT * FROM data LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ii", $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = [];
@@ -30,6 +31,12 @@ class Data{
             $data[] = $row;
         }
         return $data;
+    }
+    public function get_total_data(){
+        $query = "SELECT COUNT(*) as total FROM data";
+        $result = $this->conn->query($query);
+        $row = $result->fetch_assoc();
+        return $row['total'];
     }
     public function get_job_by_id($id){
         $query = "SELECT * FROM data WHERE id = ?";
@@ -53,19 +60,32 @@ class Data{
         }
         return $data;
     }
-    public function search_job($job){
-        $query = "SELECT * FROM data WHERE job_name LIKE ? OR company_name LIKE ?";
+    public function search_job($job, $limit, $offset){
+        $query = "SELECT * FROM data WHERE job_name LIKE ? OR company_name LIKE ? LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($query);
         // Gán giá trị cho tham số
         $param_job_name = "%$job%";
-        $stmt->bind_param ("ss", $param_job_name, $param_job_name);
+        $stmt->bind_param("ssii", $param_job_name, $param_job_name, $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = [];
         while ($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
+        $stmt->close();
         return $data;
+    }
+    public function get_total_search_job($job){
+        $query = "SELECT COUNT(*) as total FROM data WHERE job_name LIKE ? OR company_name LIKE ?";
+        $stmt = $this->conn->prepare($query);
+        // Gán giá trị cho tham số
+        $param_job_name = "%$job%";
+        $stmt->bind_param("ss", $param_job_name, $param_job_name);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['total'];
     }
     public function get_job_by_address($address){
         $query = "SELECT * FROM data WHERE job_address LIKE ?";

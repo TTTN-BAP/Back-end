@@ -15,10 +15,17 @@
     $limit   = $_GET['limit'];
     // Tính toán offset để xác định bắt đầu lấy dữ liệu từ bảng
     $offset = ($page - 1) * $limit;
-
     if ($method=='GET') {
         $read = $data_job->get_all_job($limit, $offset);
-        echo json_encode($read,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        // Lấy tổng số dữ liệu
+        $totalData = $data_job->get_total_data(); 
+        // Tính toán số lượng trang
+        $totalPages = ceil($totalData / $limit);
+        $response = array(
+            'totalPages' => $totalPages,
+            'data' => $read
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
     else {
         echo json_encode(['message' => 'Invalid method']);

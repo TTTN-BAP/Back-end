@@ -7,9 +7,10 @@ class Cv{
         $this->conn = $db;
     }
     //read data from database
-    public function get_all_cv(){
-        $query = "SELECT * FROM cv_info";
+    public function get_all_cv($limit, $offset){
+        $query = "SELECT * FROM cv_info LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ii", $limit, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
         $data = [];
@@ -17,6 +18,12 @@ class Cv{
             $data[] = $row;
         }
         return $data;
+    }
+    public function get_total_data(){
+        $query = "SELECT COUNT(*) as total FROM cv_info";
+        $result = $this->conn->query($query);
+        $row = $result->fetch_assoc();
+        return $row['total'];
     }
     public function get_cv_by_id($id_cv){
         $query = "SELECT * FROM cv_info WHERE id = ?";
